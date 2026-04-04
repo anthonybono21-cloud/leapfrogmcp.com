@@ -1,0 +1,699 @@
+---
+import '../styles/global.css';
+---
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leapfrog — 15 Parallel Browser Sessions for AI Agents</title>
+  <meta name="description" content="Multi-session browser MCP server. 15 isolated sessions, network intelligence, stealth mode, crash recovery. One npx install. Zero cloud." />
+  <meta property="og:title" content="Leapfrog — 15 Parallel Browser Sessions for AI Agents" />
+  <meta property="og:description" content="Your AI agents were fighting over one browser. Now each one gets its own isolated session." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://leapfrogmcp.com" />
+  <meta property="og:image" content="/images/og-card.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@Leapfrog_MCP" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════ NAV ══════════════════════════════════════ -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="phosphor mono frog-eyes">@..@</span>
+      <span class="nav-wordmark">LEAPFROG</span>
+    </a>
+    <div class="nav-links">
+      <a href="https://github.com/anthropics/leapfrog" class="nav-link" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://npmjs.com/package/leapfrog" class="nav-link" target="_blank" rel="noopener">npm</a>
+      <a href="#get-started" class="btn-primary btn-sm">Get Started</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════ HERO ══════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <video class="hero-bg" autoplay muted loop playsinline aria-hidden="true">
+    <source src="/images/hero-video.mp4" type="video/mp4" />
+  </video>
+  <div class="container hero-inner">
+    <p class="overline fade-in">Multi-session browser MCP server</p>
+    <h1 class="hero-headline">
+      <span class="fade-in" style="--delay: 0.1s">Your agents share a browser.</span><br/>
+      <span class="phosphor glow-text fade-in" style="--delay: 0.3s">Ours don't have to.</span>
+    </h1>
+    <p class="hero-sub fade-in" style="--delay: 0.5s">
+      15 parallel sessions. Full isolation. One server.
+    </p>
+    <div class="hero-cta fade-in" style="--delay: 0.7s">
+      <a href="#get-started" class="btn-primary">Get Started</a>
+      <a href="https://github.com/anthropics/leapfrog" class="btn-outline" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+
+    <!-- Animated terminal -->
+    <div class="hero-terminal terminal fade-in" style="--delay: 0.9s">
+      <div class="terminal-bar">
+        <span class="terminal-dot red"></span>
+        <span class="terminal-dot yellow"></span>
+        <span class="terminal-dot green"></span>
+        <span class="terminal-title">terminal</span>
+      </div>
+      <div class="terminal-body" id="hero-terminal-body">
+        <div class="typed-line" style="--line-delay: 1.2s">
+          <span class="text-muted">$</span> <span class="phosphor">npx leapfrog</span>
+        </div>
+        <div class="typed-line" style="--line-delay: 2s"><br/></div>
+        <div class="typed-line" style="--line-delay: 2.2s">
+          <span class="phosphor">&nbsp; @..@</span>&nbsp;&nbsp;&nbsp; Leapfrog <span class="text-muted">v0.5.2</span>
+        </div>
+        <div class="typed-line" style="--line-delay: 2.5s">
+          <span class="phosphor">&nbsp;(----)</span>&nbsp;&nbsp; 31 tools <span class="text-muted">|</span> 15 max sessions <span class="text-muted">|</span> stealth on
+        </div>
+        <div class="typed-line" style="--line-delay: 2.8s">
+          <span class="phosphor">( >__< )</span>&nbsp; watching.
+        </div>
+      </div>
+    </div>
+
+    <!-- Kling video reel -->
+    <div class="video-reel fade-in" style="--delay: 1.1s">
+      <div class="reel-track">
+        <div class="reel-card"><video autoplay muted loop playsinline><source src="/images/clips/command-center-wide.mp4" type="video/mp4" /></video></div>
+        <div class="reel-card"><video autoplay muted loop playsinline><source src="/images/clips/blue-surfer-a.mp4" type="video/mp4" /></video></div>
+        <div class="reel-card"><video autoplay muted loop playsinline><source src="/images/clips/command-center-closeup.mp4" type="video/mp4" /></video></div>
+        <div class="reel-card"><video autoplay muted loop playsinline><source src="/images/clips/blue-surfer-b.mp4" type="video/mp4" /></video></div>
+        <div class="reel-card"><video autoplay muted loop playsinline><source src="/images/clips/eyes-rising.mp4" type="video/mp4" /></video></div>
+        <!-- duplicate for seamless loop -->
+        <div class="reel-card"><video autoplay muted loop playsinline><source src="/images/clips/command-center-wide.mp4" type="video/mp4" /></video></div>
+        <div class="reel-card"><video autoplay muted loop playsinline><source src="/images/clips/blue-surfer-a.mp4" type="video/mp4" /></video></div>
+        <div class="reel-card"><video autoplay muted loop playsinline><source src="/images/clips/command-center-closeup.mp4" type="video/mp4" /></video></div>
+        <div class="reel-card"><video autoplay muted loop playsinline><source src="/images/clips/blue-surfer-b.mp4" type="video/mp4" /></video></div>
+        <div class="reel-card"><video autoplay muted loop playsinline><source src="/images/clips/eyes-rising.mp4" type="video/mp4" /></video></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator fade-in" style="--delay: 3s">
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ STATS STRIP ══════════════════════════════════════ -->
+<section class="stats-strip" id="stats">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat" data-count="15"><div class="stat-number">0</div><div class="stat-label">parallel sessions</div></div>
+      <div class="stat" data-count="31"><div class="stat-number">0</div><div class="stat-label">tools</div></div>
+      <div class="stat" data-count="537"><div class="stat-number">0</div><div class="stat-label">tests</div></div>
+      <div class="stat" data-count="10"><div class="stat-number">0</div><div class="stat-label" style="font-size: 0.7rem">x fewer tokens</div></div>
+      <div class="stat" data-count="0"><div class="stat-number">0</div><div class="stat-label">cloud deps</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ THE PROBLEM ══════════════════════════════════════ -->
+<section class="section scroll-reveal" id="why" style="padding-top: 80px;">
+  <div class="container">
+    <p class="overline">The problem</p>
+    <h2>Your agents are waiting in line.</h2>
+    <div class="problem-grid">
+      <div class="problem-text">
+        <p>You have multiple Claude Code terminals open. Each one needs browser access.</p>
+        <p>The moment the second terminal tries to touch the browser, both fight over the same instance. One crashes. One waits.</p>
+        <p>Every browser MCP on the market gives you one session. One browser. One agent at a time.</p>
+        <p style="font-weight: 700; font-size: 1.125rem; color: var(--lf-text-primary);">Leapfrog gives you fifteen.</p>
+      </div>
+      <div class="problem-visual terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+        </div>
+        <div class="terminal-body">
+          <span class="text-muted"># Terminal 1</span><br/>
+          <span class="text-secondary">navigating to github.com...</span><br/><br/>
+          <span class="text-muted"># Terminal 2</span><br/>
+          <span style="color: var(--lf-error);">ERROR: Browser session in use</span><br/>
+          <span style="color: var(--lf-error);">Session locked. Waiting...</span><br/><br/>
+          <span class="text-muted"># With Leapfrog</span><br/>
+          <span class="text-secondary">session s_01 → github.com &nbsp; ✓</span><br/>
+          <span class="text-secondary">session s_02 → npmjs.com &nbsp;&nbsp; ✓</span><br/>
+          <span class="text-secondary">session s_03 → vercel.com &nbsp; ✓</span><br/>
+          <span class="text-secondary">pool: 3/15 active</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ SESSION GRID ══════════════════════════════════════ -->
+<section class="section scroll-reveal" id="sessions" style="padding-top: 148px;">
+  <div class="container">
+    <p class="overline">The solution</p>
+    <h2>Fifteen sessions. Each one isolated.</h2>
+    <p class="text-secondary" style="max-width: 600px; margin-bottom: 3rem;">
+      Each session runs in its own BrowserContext — separate cookies, localStorage,
+      cache, and fingerprint. They never leak state.
+    </p>
+    <div class="session-grid" id="session-grid">
+      <div class="session-window" style="--i:0"><div class="session-badge">s_01</div><div class="session-site">github.com</div></div>
+      <div class="session-window" style="--i:1"><div class="session-badge">s_02</div><div class="session-site">npmjs.com</div></div>
+      <div class="session-window" style="--i:2"><div class="session-badge">s_03</div><div class="session-site">gmail.com</div></div>
+      <div class="session-window" style="--i:3"><div class="session-badge">s_04</div><div class="session-site">stripe.com</div></div>
+      <div class="session-window" style="--i:4"><div class="session-badge">s_05</div><div class="session-site">vercel.com</div></div>
+      <div class="session-window" style="--i:5"><div class="session-badge">s_06</div><div class="session-site">linear.app</div></div>
+      <div class="session-window" style="--i:6"><div class="session-badge">s_07</div><div class="session-site">notion.so</div></div>
+      <div class="session-window" style="--i:7"><div class="session-badge">s_08</div><div class="session-site">aws.amazon.com</div></div>
+      <div class="session-window" style="--i:8"><div class="session-badge">s_09</div><div class="session-site">figma.com</div></div>
+      <div class="session-window" style="--i:9"><div class="session-badge">s_10</div><div class="session-site">slack.com</div></div>
+      <div class="session-window" style="--i:10"><div class="session-badge">s_11</div><div class="session-site">jira.atlassian</div></div>
+      <div class="session-window" style="--i:11"><div class="session-badge">s_12</div><div class="session-site">docs.google</div></div>
+      <div class="session-window session-dim" style="--i:12"><div class="session-badge">s_13</div><div class="session-site">...</div></div>
+      <div class="session-window session-dim" style="--i:13"><div class="session-badge">s_14</div><div class="session-site">...</div></div>
+      <div class="session-window session-dim" style="--i:14"><div class="session-badge">s_15</div><div class="session-site">...</div></div>
+    </div>
+    <p class="pool-status">pool: 15/15 active &nbsp;|&nbsp; 0 conflicts &nbsp;|&nbsp; 52MB heap</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ FEATURES ══════════════════════════════════════ -->
+<section class="section scroll-reveal" id="features" style="padding-top: 148px;">
+  <div class="container">
+    <p class="overline">What's in the box</p>
+    <h2>31 tools. Zero filler.</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Run 15 browsers at once. Zero tug-of-war between agents.</h3>
+        <p>Each session gets its own cookies, storage, and fingerprint. Session 1 on GitHub and Session 5 on Gmail never share a single byte.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Mouse curves. Typing delays. Scroll drift. Sites think you're real.</h3>
+        <p>Bezier mouse paths, log-normal keystroke timing, smooth scroll with natural variance. 6 humanization modules that make automation look like a person at a keyboard.</p>
+      </div>
+      <div class="feature-card">
+        <h3>14 patches that make headless Chrome invisible.</h3>
+        <p>navigator.webdriver gone. Full chrome object faked. 5 realistic plugins injected. Canvas fingerprint noise. Hardware spoofing. Sites see a real Chrome on a real Mac.</p>
+      </div>
+      <div class="feature-card">
+        <h3>See every HTTP request. Block, mock, or capture any of them.</h3>
+        <p>200-entry traffic ring buffer with regex filtering. Route-based interception — block ads, mock API responses, log specific patterns. All controllable mid-session.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Browser crashes. Your work doesn't.</h3>
+        <p>Disconnect detected, sessions cleaned, fresh Chromium on the next call. No zombie processes. No orphaned contexts.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Persistent login across sessions.</h3>
+        <p>Save cookies and localStorage to disk. Mount on any future session. Your agent picks up where you left off.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Same page. 10x less context burned.</h3>
+        <p>Accessibility tree snapshots instead of raw DOM. Your agent sees <code>@e3 button "Submit"</code> — not 14,000 tokens of div soup.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Popups, OAuth, new tabs — all tracked automatically.</h3>
+        <p>When a site opens a popup or redirects to an OAuth flow, Leapfrog follows. Switch between tabs by index. Nothing gets lost.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ COMPARISON ══════════════════════════════════════ -->
+<section class="section scroll-reveal" id="compare" style="padding-top: 80px;">
+  <div class="container">
+    <p class="overline">How it stacks up</p>
+    <h2>Bring a chart.</h2>
+    <p class="text-secondary" style="max-width: 640px; margin-bottom: 2.5rem;">
+      agent-browser wins on raw token count. browser-use has 81K stars. Stagehand has
+      the best natural language DX. Leapfrog ships the combination nobody else does.
+    </p>
+    <div class="table-wrap">
+      <table class="comparison-table">
+        <thead>
+          <tr><th></th><th>Leapfrog</th><th>Playwright MCP</th><th>agent-browser</th><th>Stagehand</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Parallel sessions</td><td class="highlight">15 (isolated)</td><td>1</td><td>1</td><td>Cloud (paid)</td></tr>
+          <tr><td>Session isolation</td><td class="highlight">Full</td><td>No</td><td>No</td><td>Cloud</td></tr>
+          <tr><td>Tokens / page</td><td class="highlight">~1,400</td><td>~14,000</td><td>~300</td><td>~2,000+</td></tr>
+          <tr><td>Network intercept</td><td class="highlight">Yes</td><td>No</td><td>No</td><td>No</td></tr>
+          <tr><td>Stealth</td><td class="highlight">14 patches</td><td>No</td><td>No</td><td>Proxy</td></tr>
+          <tr><td>Crash recovery</td><td class="highlight">Auto</td><td>No</td><td>No</td><td>Cloud</td></tr>
+          <tr><td>Local-first</td><td class="highlight">Yes</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+          <tr><td>Price</td><td class="highlight">Free (MIT)</td><td>Free</td><td>Free</td><td>Paid tiers</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ GET STARTED ══════════════════════════════════════ -->
+<section class="section scroll-reveal" id="get-started" style="padding-top: 80px;">
+  <div class="container cta-section">
+    <p class="overline">Ready to jump in?</p>
+    <h2>One install. No cloud. No API key. No account.</h2>
+    <p class="text-secondary" style="margin-bottom: 2rem;">
+      Works with Claude Code, Cursor, Windsurf — anything that speaks MCP.
+    </p>
+    <div class="code-block">
+      <span class="text-muted">// Add to your MCP config (~/.mcp.json)</span><br/>
+      &#123;<br/>
+      &nbsp; <span class="text-secondary">"leapfrog"</span>: &#123;<br/>
+      &nbsp;&nbsp;&nbsp; <span class="text-secondary">"command"</span>: <span class="text-muted">"npx"</span>,<br/>
+      &nbsp;&nbsp;&nbsp; <span class="text-secondary">"args"</span>: [<span class="text-muted">"-y"</span>, <span class="text-muted">"leapfrog"</span>]<br/>
+      &nbsp; &#125;<br/>
+      &#125;
+    </div>
+    <div class="code-block" style="margin-top: 1rem;">
+      <span class="text-muted">$</span> <span class="text-secondary">npx leapfrog --doctor</span>
+    </div>
+    <div class="badge-row">
+      <span class="badge">Open Source</span>
+      <span class="badge">MIT License</span>
+      <span class="badge">Zero Cloud</span>
+      <span class="badge">Zero API Keys</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ ORIGIN ══════════════════════════════════════ -->
+<section class="section scroll-reveal" id="story" style="padding-top: 80px;">
+  <div class="container origin-section">
+    <blockquote class="origin-quote">
+      <p class="origin-line">One agent was signing up for backlinks. Another was pulling competitor data.</p>
+      <p class="origin-line">Same browser. Same crash.</p>
+      <p class="origin-line" style="margin-top: 1rem;">That's not a multi-agent workflow. That's a collision.</p>
+      <p class="origin-line" style="margin-top: 1.5rem;">I needed browsers that couldn't interfere with each other. Not two. Fifteen. Each with its own cookies, its own storage, its own fingerprint. No shared state. No tug of war.</p>
+      <p class="origin-line" style="margin-top: 1.5rem; color: var(--lf-text-primary); font-weight: 600;">One server. Zero collisions. That's the product.</p>
+    </blockquote>
+    <div class="origin-frog">
+      <span class="phosphor frog-eyes-lg">@..@</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ FOOTER ══════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-left">
+      <span class="phosphor mono">@..@</span>
+      <span class="text-muted" style="margin-left: 0.75rem;">Every agent needs a scout.</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/anthropics/leapfrog" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://npmjs.com/package/leapfrog" target="_blank" rel="noopener">npm</a>
+      <a href="https://x.com/Leapfrog_MCP" target="_blank" rel="noopener">@Leapfrog_MCP</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════ ANIMATIONS ══════════════════════════════════════ -->
+<script>
+  // Scroll-triggered reveals
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        // Animate session grid windows with stagger
+        if (entry.target.querySelector('.session-grid')) {
+          const windows = entry.target.querySelectorAll('.session-window');
+          windows.forEach((w, i) => {
+            setTimeout(() => w.classList.add('session-visible'), i * 60);
+          });
+        }
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+  // Stat counter animation
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const stats = entry.target.querySelectorAll('.stat');
+        stats.forEach(stat => {
+          const target = parseInt(stat.dataset.count);
+          const numEl = stat.querySelector('.stat-number');
+          const suffix = target === 10 ? 'x' : '';
+          let current = 0;
+          const duration = 1200;
+          const step = target / (duration / 16);
+          const animate = () => {
+            current += step;
+            if (current >= target) {
+              numEl.textContent = target + suffix;
+              return;
+            }
+            numEl.textContent = Math.floor(current) + suffix;
+            requestAnimationFrame(animate);
+          };
+          animate();
+        });
+        statObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  statObserver.observe(document.getElementById('stats'));
+
+  // Frog blink animation (8s interval)
+  function blinkFrog() {
+    document.querySelectorAll('.frog-eyes, .frog-eyes-lg').forEach(el => {
+      el.style.opacity = '0.1';
+      setTimeout(() => el.style.opacity = '1', 150);
+    });
+  }
+  setInterval(blinkFrog, 8000);
+
+  // Fade-in on load
+  document.querySelectorAll('.fade-in').forEach(el => {
+    const delay = getComputedStyle(el).getPropertyValue('--delay') || '0s';
+    el.style.animationDelay = delay;
+  });
+
+  // Nav background on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('nav-scrolled', window.scrollY > 50);
+  });
+
+  // Safety: reveal all sections after 2s in case IntersectionObserver doesn't fire
+  setTimeout(() => {
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+      if (!el.classList.contains('revealed')) {
+        el.classList.add('revealed');
+        const windows = el.querySelectorAll('.session-window');
+        windows.forEach((w, i) => setTimeout(() => w.classList.add('session-visible'), i * 60));
+      }
+    });
+  }, 2000);
+</script>
+
+<style>
+  /* All content above dot grid background */
+  nav, section, footer { position: relative; z-index: 1; }
+
+  /* Nav */
+  #nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1rem 0;
+    background: transparent;
+    transition: background 0.3s, border-color 0.3s;
+    border-bottom: 1px solid transparent;
+  }
+  .nav-scrolled {
+    background: rgba(26, 30, 40, 0.95) !important;
+    backdrop-filter: blur(16px);
+    border-bottom-color: var(--lf-border) !important;
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: 0.625rem; text-decoration: none; }
+  .nav-wordmark {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    letter-spacing: 0.12em;
+    color: var(--lf-text-primary);
+  }
+  .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+  .nav-link { font-size: 0.875rem; color: var(--lf-text-muted); transition: color 0.2s; }
+  .nav-link:hover { color: var(--lf-text-primary); opacity: 1; }
+  .btn-sm { padding: 0.5rem 1.25rem; font-size: 0.8125rem; }
+
+  /* Hero */
+  .hero {
+    padding: 12rem 0 6rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.2;
+    z-index: 0;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, var(--lf-void) 0%, transparent 30%, transparent 70%, var(--lf-void) 100%);
+  }
+  .hero-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  .hero-headline { margin: 1rem 0 1.5rem; }
+  .hero-sub {
+    font-size: 1.125rem;
+    color: var(--lf-text-secondary);
+    line-height: 1.7;
+    max-width: 580px;
+    margin: 0 auto 2.5rem;
+  }
+  .hero-cta { display: flex; gap: 1rem; margin-bottom: 3.5rem; flex-wrap: wrap; justify-content: center; }
+  .hero-terminal { max-width: 520px; margin: 0 auto; text-align: left; }
+  .terminal-title { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--lf-text-muted); }
+
+  /* Video reel — scrolling Kling clips */
+  .video-reel {
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    margin-top: 3rem;
+    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  }
+  .reel-track {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    animation: reelScroll 30s linear infinite;
+  }
+  .reel-card {
+    flex-shrink: 0;
+    width: 280px;
+    height: 158px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--lf-border);
+    box-shadow: 0 0 16px rgba(0, 255, 65, 0.06);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .reel-card:hover {
+    border-color: var(--lf-phosphor);
+    box-shadow: 0 0 24px rgba(0, 255, 65, 0.15);
+  }
+  .reel-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  @keyframes reelScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .reel-track:hover { animation-play-state: paused; }
+
+  /* Typed line animation */
+  .typed-line {
+    opacity: 0;
+    transform: translateY(4px);
+    animation: typedReveal 0.3s forwards;
+    animation-delay: var(--line-delay, 0s);
+  }
+  @keyframes typedReveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Fade-in */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--delay, 0s);
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Scroll indicator */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .scroll-arrow {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(180deg, var(--lf-phosphor), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.3); }
+  }
+
+  /* Stats strip */
+  .stats-strip {
+    padding: 3rem 0;
+    background: var(--lf-deep);
+    border-top: 1px solid var(--lf-border);
+    border-bottom: 1px solid var(--lf-border);
+  }
+
+  /* Scroll reveal */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Problem section */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-top: 2rem;
+  }
+  .problem-text p {
+    color: var(--lf-text-secondary);
+    margin-bottom: 1.25rem;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+
+  /* Session grid — THE SIGNATURE MOVE */
+  .session-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.75rem;
+  }
+  .session-window {
+    background: var(--lf-surface);
+    border: 1px solid var(--lf-border);
+    border-radius: 8px;
+    padding: 0.875rem;
+    min-height: 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 0;
+    transform: scale(0.8) translateY(12px);
+    transition: opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                border-color 0.2s, box-shadow 0.2s;
+  }
+  .session-visible {
+    opacity: 1 !important;
+    transform: scale(1) translateY(0) !important;
+  }
+  .session-window:hover {
+    border-color: var(--lf-border-bright);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+  .session-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    color: var(--lf-phosphor);
+    background: rgba(0, 255, 65, 0.06);
+    padding: 0.125rem 0.5rem;
+    border-radius: 999px;
+    width: fit-content;
+    border: 1px solid rgba(0, 255, 65, 0.12);
+  }
+  .session-site {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    color: var(--lf-text-muted);
+    margin-top: 0.375rem;
+  }
+  .session-dim { --dim: 0.55; }
+  .session-dim.session-visible { opacity: var(--dim) !important; }
+  .pool-status {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--lf-text-muted);
+  }
+
+  /* Table */
+  .table-wrap { overflow-x: auto; }
+
+  /* CTA section */
+  .cta-section { max-width: 680px; text-align: center; margin: 0 auto; }
+  .cta-section .code-block { text-align: left; }
+  .badge-row {
+    display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;
+  }
+
+  /* Origin */
+  .origin-section { max-width: 640px; text-align: center; margin: 0 auto; }
+  .origin-quote { border: none; padding: 0; margin: 0; }
+  .origin-line {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--lf-text-secondary);
+    margin-bottom: 0.5rem;
+  }
+  .origin-frog { margin-top: 3rem; }
+  .frog-eyes-lg {
+    font-size: 3rem;
+    transition: opacity 0.15s;
+    display: inline-block;
+  }
+  .frog-eyes { transition: opacity 0.15s; }
+
+  /* Footer */
+  .footer { padding: 2rem 0; border-top: 1px solid var(--lf-border); }
+  .footer-inner { display: flex; align-items: center; justify-content: space-between; }
+  .footer-left { display: flex; align-items: center; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.8125rem; color: var(--lf-text-muted); }
+  .footer-links a:hover { color: var(--lf-text-primary); opacity: 1; }
+
+  .hide-mobile { display: inline; }
+
+  @media (max-width: 768px) {
+    .hero { padding: 8rem 0 4rem; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .session-grid { grid-template-columns: repeat(3, 1fr); }
+    .hide-mobile { display: none; }
+    .nav-links .nav-link { display: none; }
+    .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+    .reel-card { width: 200px; height: 113px; }
+    .video-reel { margin-top: 2rem; }
+  }
+</style>
+
+</body>
+</html>
