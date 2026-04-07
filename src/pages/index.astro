@@ -99,109 +99,235 @@ import '../styles/global.css';
   </div>
 </section>
 
-<!-- ══════════════════════════════════════ THE PROBLEM ══════════════════════════════════════ -->
-<section class="section scroll-reveal" id="why" style="padding-top: 80px;">
+<!-- ══════════════════════════════════════ WHAT IT IS ══════════════════════════════════════ -->
+<section class="section scroll-reveal" id="what-it-is" style="padding-top: 80px; padding-bottom: 40px;">
+  <div class="container what-it-is-container">
+    <p class="overline">What it is</p>
+    <h2 class="what-it-is-headline">A Model Context Protocol server that gives your AI agents real browsers — multiple of them, in parallel, with isolated cookies, fingerprints, and state.</h2>
+    <p class="text-secondary what-it-is-sub">
+      The only MCP that lets you run 15 sessions side-by-side without them stepping on each other's auth or tabs. Open source, runs locally, no cloud account required.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ WHAT'S IN THE BOX ══════════════════════════════════════ -->
+<section class="section scroll-reveal" id="features" style="padding-top: 80px;">
   <div class="container">
-    <p class="overline">The problem</p>
-    <h2>Your agents are waiting in line.</h2>
-    <div class="problem-grid">
-      <div class="problem-text">
-        <p>You have multiple Claude Code terminals open. Each one needs browser access.</p>
-        <p>The moment the second terminal tries to touch the browser, both fight over the same instance. One crashes. One waits.</p>
-        <p>Every browser MCP on the market gives you one session. One browser. One agent at a time.</p>
-        <p style="font-weight: 700; font-size: 1.125rem; color: var(--lf-text-primary);">Leapfrog gives you fifteen.</p>
+    <p class="overline">What's in the box</p>
+    <h2>36 tools. 9 capability groups. Zero filler.</h2>
+    <p class="text-secondary section-intro">
+      Every tool that ships in v0.6.1, organized by what it actually does.
+      The five at the top are the hero capabilities — the things nobody else can do.
+    </p>
+
+    <div class="capability-grid">
+
+      <!-- HERO: Sessions & Pool -->
+      <div class="cap-card cap-hero">
+        <div class="cap-header">
+          <span class="cap-tag tag-moat">THE MOAT</span>
+          <h3>Sessions &amp; Pool</h3>
+        </div>
+        <p class="cap-desc">15 isolated BrowserContexts. Separate cookies, fingerprint, viewport, locale, geo, proxy. They never leak state into each other.</p>
+        <ul class="tool-list">
+          <li><code>session_create</code><span>Spin up an isolated session with its own everything</span></li>
+          <li><code>session_list</code><span>List all active sessions with URLs and idle time</span></li>
+          <li><code>session_destroy</code><span>Close a session and free its pool slot</span></li>
+          <li><code>session_health</code><span>Check if sessions are alive and responsive</span></li>
+          <li><code>pool_status</code><span>Pool stats, memory, uptime, per-session idle countdown</span></li>
+        </ul>
       </div>
-      <div class="problem-visual terminal">
+
+      <!-- HERO: Profiles & Auth -->
+      <div class="cap-card cap-hero">
+        <div class="cap-header">
+          <span class="cap-tag tag-identity">REAL IDENTITY</span>
+          <h3>Profiles &amp; Auth</h3>
+        </div>
+        <p class="cap-desc">Bring your real Chrome cookies. Stay logged in. Skip captcha hell. Sites trust you because you actually are you.</p>
+        <ul class="tool-list">
+          <li><code>profile_import_from_chrome</code><span>Connect to your real Chrome via CDP and import its cookies</span></li>
+          <li><code>session_save_profile</code><span>Snapshot a logged-in session's cookies + storage to disk</span></li>
+          <li><code>session_list_profiles</code><span>List saved auth profiles</span></li>
+          <li><code>profile_list</code><span>List persistent browser profiles with auth status</span></li>
+          <li><code>profile_warm</code><span>Browse Google/Wikipedia to build trust before reCAPTCHA hits</span></li>
+          <li><code>profile_delete</code><span>Wipe a saved profile</span></li>
+        </ul>
+      </div>
+
+      <!-- HERO: Navigation & Perception -->
+      <div class="cap-card cap-hero">
+        <div class="cap-header">
+          <span class="cap-tag tag-tokens">CHEAP TO LOOK</span>
+          <h3>Navigation &amp; Perception</h3>
+        </div>
+        <p class="cap-desc">Accessibility tree snapshots, not raw DOM. Your agent sees <code>@e3 button "Submit"</code> — not 14,000 tokens of div soup. ~5x median token reduction.</p>
+        <ul class="tool-list">
+          <li><code>navigate</code><span>Go to URL, return a <code>@e1</code>/<code>@e2</code> snapshot</span></li>
+          <li><code>snapshot</code><span>Re-snapshot the current page or a region for fresh refs</span></li>
+          <li><code>diff</code><span>Returns only what changed since the last snapshot</span></li>
+          <li><code>extract</code><span>Pull text, HTML, title, URL, or JS-evaluated value from any element</span></li>
+        </ul>
+      </div>
+
+      <!-- HERO: Network Intelligence -->
+      <div class="cap-card cap-hero">
+        <div class="cap-header">
+          <span class="cap-tag tag-network">NOBODY ELSE HAS THIS</span>
+          <h3>Network Intelligence</h3>
+        </div>
+        <p class="cap-desc">See every HTTP request. Block trackers, mock responses, log specific patterns. Reverse-engineer hidden APIs in minutes.</p>
+        <ul class="tool-list">
+          <li><code>network_log</code><span>View captured requests/responses with regex filtering</span></li>
+          <li><code>network_intercept</code><span>Block, log, or mock requests with URL globs — add/remove rules mid-session</span></li>
+          <li><code>console_log</code><span>View captured browser console messages, filterable by level</span></li>
+          <li><code>api_discover</code><span>List JSON APIs the page called, classified as data/tracking/auth/cdn/ads</span></li>
+          <li><code>api_export</code><span>Generate an OpenAPI v3 spec from observed API traffic</span></li>
+        </ul>
+      </div>
+
+      <!-- HERO: Self-Improvement -->
+      <div class="cap-card cap-hero">
+        <div class="cap-header">
+          <span class="cap-tag tag-learn">GETS SMARTER</span>
+          <h3>Self-Improvement &amp; Memory</h3>
+        </div>
+        <p class="cap-desc">Per-domain JSON files that learn selectors, wait strategies, stealth levels, and discovered APIs. Every visit teaches the next one.</p>
+        <ul class="tool-list">
+          <li><code>domain_knowledge</code><span>Inspect what Leapfrog has learned per site — visits, selectors, bandit weights</span></li>
+          <li><code>session_memory</code><span>Recall actions performed in this session (recovers context after compression)</span></li>
+          <li><code>add_init_script</code><span>Inject JS that runs before every page load</span></li>
+        </ul>
+      </div>
+
+      <!-- COMPACT: Interaction -->
+      <div class="cap-card">
+        <div class="cap-header">
+          <h3>Interaction</h3>
+        </div>
+        <p class="cap-desc">Click, fill, type, scroll, drag, upload — one verb, every action. Plus power-user escape hatches.</p>
+        <ul class="tool-list">
+          <li><code>act</code><span>Click, fill, type, check, select, press, scroll, hover, drag, upload</span></li>
+          <li><code>batch_actions</code><span>Run up to 100 actions in one call with per-step humanization delays</span></li>
+          <li><code>execute</code><span>Run a full Playwright script with <code>&#123;page, context&#125;</code></span></li>
+          <li><code>wait_for</code><span>Wait for element / text / network idle / nav / JS expression</span></li>
+        </ul>
+      </div>
+
+      <!-- COMPACT: Multi-Tab -->
+      <div class="cap-card">
+        <div class="cap-header">
+          <h3>Multi-Tab</h3>
+        </div>
+        <p class="cap-desc">Popups, OAuth, redirects — tracked automatically. Switch by index, or <code>-1</code> for the most recent.</p>
+        <ul class="tool-list">
+          <li><code>tabs_list</code><span>List all tabs in a session, including auto-tracked popups</span></li>
+          <li><code>tab_switch</code><span>Switch by index, or <code>-1</code> for the most recent (popup/OAuth handler)</span></li>
+          <li><code>tab_close</code><span>Close a tab by index</span></li>
+        </ul>
+      </div>
+
+      <!-- COMPACT: Recording & Replay -->
+      <div class="cap-card">
+        <div class="cap-header">
+          <h3>Recording &amp; Replay</h3>
+        </div>
+        <p class="cap-desc">Teach once. Replay forever. Parameterize anything. Export as Playwright code or JSON.</p>
+        <ul class="tool-list">
+          <li><code>session_export</code><span>Export action history as a replayable JSON or Playwright script</span></li>
+          <li><code>session_replay</code><span>Replay with <code>&#123;&#123;placeholder&#125;&#125;</code> overrides and skip-on-error</span></li>
+          <li><code>session_export_trace</code><span>Export a Playwright trace.zip viewable at trace.playwright.dev</span></li>
+        </ul>
+      </div>
+
+      <!-- COMPACT: Capture / Pagination / Human Loop -->
+      <div class="cap-card">
+        <div class="cap-header">
+          <h3>Capture · Pagination · Human Loop</h3>
+        </div>
+        <p class="cap-desc">The essentials. Screenshots, paginated walking, and a "tap me in" overlay for when the agent gets stuck.</p>
+        <ul class="tool-list">
+          <li><code>screenshot</code><span>Capture page or element as inline base64, optionally save to disk</span></li>
+          <li><code>paginate</code><span>Walk click-next, infinite scroll, or URL-pattern pagination in one call</span></li>
+          <li><code>wait_for_human</code><span>Pop the @..@ overlay, request human help, block until they click Done</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ SELF-IMPROVEMENT DEEP DIVE ══════════════════════════════════════ -->
+<section class="section scroll-reveal" id="self-improvement" style="padding-top: 80px;">
+  <div class="container">
+    <p class="overline">The flywheel</p>
+    <h2>Gets smarter every visit.</h2>
+    <p class="text-secondary section-intro" style="font-size: 1.0625rem; line-height: 1.7;">
+      Stealth tightens when you get blocked. Snapshots shrink when nav stops changing. APIs replace pages once Leapfrog sees them in network traffic. <strong style="color: var(--lf-text-primary);">The agent wrote none of it.</strong>
+    </p>
+
+    <div class="self-improve-grid">
+
+      <!-- LEFT: Dossier visual -->
+      <div class="dossier terminal">
         <div class="terminal-bar">
           <span class="terminal-dot red"></span>
           <span class="terminal-dot yellow"></span>
           <span class="terminal-dot green"></span>
+          <span class="terminal-title">~/.leapfrog/domains/github.com.json</span>
         </div>
-        <div class="terminal-body">
-          <span class="text-muted"># Terminal 1</span><br/>
-          <span class="text-secondary">navigating to github.com...</span><br/><br/>
-          <span class="text-muted"># Terminal 2</span><br/>
-          <span style="color: var(--lf-error);">ERROR: Browser session in use</span><br/>
-          <span style="color: var(--lf-error);">Session locked. Waiting...</span><br/><br/>
-          <span class="text-muted"># With Leapfrog</span><br/>
-          <span class="text-secondary">session s_01 → github.com &nbsp; ✓</span><br/>
-          <span class="text-secondary">session s_02 → npmjs.com &nbsp;&nbsp; ✓</span><br/>
-          <span class="text-secondary">session s_03 → vercel.com &nbsp; ✓</span><br/>
-          <span class="text-secondary">pool: 3/15 active</span>
+        <div class="terminal-body" style="font-size: 0.8125rem;">
+          <span class="text-muted">&#123;</span><br/>
+          &nbsp;&nbsp;<span class="phosphor">"domain"</span>: <span class="text-secondary">"github.com"</span>,<br/>
+          &nbsp;&nbsp;<span class="phosphor">"visitCount"</span>: <span class="text-secondary">47</span>,<br/>
+          &nbsp;&nbsp;<span class="phosphor">"stealthLevel"</span>: <span class="text-secondary">2</span>,<br/>
+          &nbsp;&nbsp;<span class="phosphor">"waitStrategy"</span>: <span class="text-secondary">"domcontentloaded"</span>,<br/>
+          &nbsp;&nbsp;<span class="phosphor">"learnedSelectors"</span>: <span class="text-secondary">12</span>,<br/>
+          &nbsp;&nbsp;<span class="phosphor">"banditWeights"</span>: [<span class="text-secondary">0.31, 0.22, 0.41, 0.06</span>],<br/>
+          &nbsp;&nbsp;<span class="phosphor">"suppressedRegions"</span>: [<span class="text-secondary">"nav", "footer"</span>],<br/>
+          &nbsp;&nbsp;<span class="phosphor">"avgTokens"</span>: <span class="text-secondary">487</span> &nbsp;<span class="text-muted">// was 1550</span>,<br/>
+          &nbsp;&nbsp;<span class="phosphor">"consentSelector"</span>: <span class="text-secondary">".accept-all"</span>,<br/>
+          &nbsp;&nbsp;<span class="phosphor">"discoveredApis"</span>: <span class="text-secondary">4</span><br/>
+          <span class="text-muted">&#125;</span>
         </div>
+      </div>
+
+      <!-- RIGHT: Mechanism breakdown -->
+      <div class="mechanisms">
+        <h3 style="margin-bottom: 1.5rem;">What it actually learns</h3>
+
+        <div class="mechanism">
+          <p class="mechanism-name">Per-domain knowledge files</p>
+          <p class="mechanism-desc">A JSON dossier per site at <code>~/.leapfrog/domains/</code>. Visit count, working selectors, learned consent button, discovered APIs. Inspectable, deletable, portable.</p>
+        </div>
+
+        <div class="mechanism">
+          <p class="mechanism-name">EXP3 bandit (4 stealth strategies)</p>
+          <p class="mechanism-desc">Stealth strategies compete on success rates. Got blocked at level 0? Next session for that domain starts pre-armed at the level that worked.</p>
+        </div>
+
+        <div class="mechanism">
+          <p class="mechanism-name">Heat-map element suppression</p>
+          <p class="mechanism-desc">Tracks which <code>@eN</code> refs the agent actually clicks. After 10 visits, decorative footer links and unused regions get pruned from snapshots.</p>
+        </div>
+
+        <div class="mechanism">
+          <p class="mechanism-name">Cookie consent learning</p>
+          <p class="mechanism-desc">Ships with 10 framework rules. Learns new dismissal patterns after 3 successful clicks on the same selector.</p>
+        </div>
+
+        <div class="mechanism">
+          <p class="mechanism-name">Captcha solver</p>
+          <p class="mechanism-desc">Free tier handles visible reCAPTCHA v2 and Cloudflare checkbox. Hard captchas escalate to a paid provider you configure.</p>
+        </div>
+
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ══════════════════════════════════════ SESSION GRID ══════════════════════════════════════ -->
-<section class="section scroll-reveal" id="sessions" style="padding-top: 148px;">
-  <div class="container">
-    <p class="overline">The solution</p>
-    <h2>Fifteen sessions. Each one isolated.</h2>
-    <p class="text-secondary" style="max-width: 600px; margin-bottom: 3rem;">
-      Each session runs in its own BrowserContext — separate cookies, localStorage,
-      cache, and fingerprint. They never leak state.
-    </p>
-    <div class="session-grid" id="session-grid">
-      <div class="session-window" style="--i:0"><div class="session-badge">s_01</div><div class="session-site">github.com</div></div>
-      <div class="session-window" style="--i:1"><div class="session-badge">s_02</div><div class="session-site">npmjs.com</div></div>
-      <div class="session-window" style="--i:2"><div class="session-badge">s_03</div><div class="session-site">gmail.com</div></div>
-      <div class="session-window" style="--i:3"><div class="session-badge">s_04</div><div class="session-site">stripe.com</div></div>
-      <div class="session-window" style="--i:4"><div class="session-badge">s_05</div><div class="session-site">vercel.com</div></div>
-      <div class="session-window" style="--i:5"><div class="session-badge">s_06</div><div class="session-site">linear.app</div></div>
-      <div class="session-window" style="--i:6"><div class="session-badge">s_07</div><div class="session-site">notion.so</div></div>
-      <div class="session-window" style="--i:7"><div class="session-badge">s_08</div><div class="session-site">aws.amazon.com</div></div>
-      <div class="session-window" style="--i:8"><div class="session-badge">s_09</div><div class="session-site">figma.com</div></div>
-      <div class="session-window" style="--i:9"><div class="session-badge">s_10</div><div class="session-site">slack.com</div></div>
-      <div class="session-window" style="--i:10"><div class="session-badge">s_11</div><div class="session-site">jira.atlassian</div></div>
-      <div class="session-window" style="--i:11"><div class="session-badge">s_12</div><div class="session-site">docs.google</div></div>
-      <div class="session-window session-dim" style="--i:12"><div class="session-badge">s_13</div><div class="session-site">...</div></div>
-      <div class="session-window session-dim" style="--i:13"><div class="session-badge">s_14</div><div class="session-site">...</div></div>
-      <div class="session-window session-dim" style="--i:14"><div class="session-badge">s_15</div><div class="session-site">...</div></div>
-    </div>
-    <p class="pool-status">pool: 15/15 active &nbsp;|&nbsp; 0 conflicts &nbsp;|&nbsp; 52MB heap</p>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════ FEATURES ══════════════════════════════════════ -->
-<section class="section scroll-reveal" id="features" style="padding-top: 148px;">
-  <div class="container">
-    <p class="overline">What's in the box</p>
-    <h2>36 tools. Zero filler.</h2>
-    <div class="feature-grid">
-      <div class="feature-card">
-        <h3>Run 15 browsers at once. Zero tug-of-war between agents.</h3>
-        <p>Each session gets its own cookies, storage, and fingerprint. Session 1 on GitHub and Session 5 on Gmail never share a single byte.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Mouse curves. Typing delays. Scroll drift. Sites think you're real.</h3>
-        <p>Bezier mouse paths, log-normal keystroke timing, smooth scroll with natural variance. 6 humanization modules that make automation look like a person at a keyboard.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Import Chrome. Stay logged in.</h3>
-        <p>Import your real Chrome profile — cookies, history, saved logins. Sites trust you because you ARE you. No fake fingerprints. No disguise needed.</p>
-      </div>
-      <div class="feature-card">
-        <h3>See every HTTP request. Block, mock, or capture any of them.</h3>
-        <p>200-entry traffic ring buffer with regex filtering. Route-based interception — block ads, mock API responses, log specific patterns. All controllable mid-session.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Browser crashes. Your work doesn't.</h3>
-        <p>Disconnect detected, sessions cleaned, fresh Chromium on the next call. No zombie processes. No orphaned contexts.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Persistent login across sessions.</h3>
-        <p>Save cookies and localStorage to disk. Mount on any future session. Your agent picks up where you left off.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Same page. 10x less context burned.</h3>
-        <p>Accessibility tree snapshots instead of raw DOM. Your agent sees <code>@e3 button "Submit"</code> — not 14,000 tokens of div soup.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Popups, OAuth, new tabs — all tracked automatically.</h3>
-        <p>When a site opens a popup or redirects to an OAuth flow, Leapfrog follows. Switch between tabs by index. Nothing gets lost.</p>
-      </div>
+    <div class="self-improve-cta">
+      <p class="text-secondary" style="font-size: 0.9375rem; line-height: 1.7; max-width: 720px; margin: 3rem auto 0;">
+        <strong style="color: var(--lf-text-primary);">It's not a black box.</strong> Stored locally at <code>~/.leapfrog/domains/</code>. Deletable per domain. Inspectable in your editor. No telemetry, no cloud sync, no account. <code>cat</code> it. <code>rm</code> it. It's just files.
+      </p>
     </div>
   </div>
 </section>
@@ -210,10 +336,10 @@ import '../styles/global.css';
 <section class="section scroll-reveal" id="compare" style="padding-top: 80px;">
   <div class="container">
     <p class="overline">How it stacks up</p>
-    <h2>Bring a chart.</h2>
+    <h2>Multi-session by default. Open-source by license.</h2>
     <p class="text-secondary" style="max-width: 640px; margin-bottom: 2.5rem;">
       agent-browser wins on raw token count. browser-use has 81K stars. Stagehand has
-      the best natural language DX. Leapfrog ships the combination nobody else does.
+      the best natural language DX. Leapfrog ships the combination nobody else does — and runs entirely on your laptop.
     </p>
     <div class="table-wrap">
       <table class="comparison-table">
@@ -302,13 +428,6 @@ import '../styles/global.css';
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('revealed');
-        // Animate session grid windows with stagger
-        if (entry.target.querySelector('.session-grid')) {
-          const windows = entry.target.querySelectorAll('.session-window');
-          windows.forEach((w, i) => {
-            setTimeout(() => w.classList.add('session-visible'), i * 60);
-          });
-        }
       }
     });
   }, { threshold: 0.15 });
@@ -371,8 +490,6 @@ import '../styles/global.css';
     document.querySelectorAll('.scroll-reveal').forEach(el => {
       if (!el.classList.contains('revealed')) {
         el.classList.add('revealed');
-        const windows = el.querySelectorAll('.session-window');
-        windows.forEach((w, i) => setTimeout(() => w.classList.add('session-visible'), i * 60));
       }
     });
     // Force stats if they haven't animated yet
@@ -567,74 +684,205 @@ import '../styles/global.css';
     transform: translateY(0);
   }
 
-  /* Problem section */
-  .problem-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: start;
-    margin-top: 2rem;
+  /* What It Is — bridge section */
+  .what-it-is-container { max-width: 880px; }
+  .what-it-is-headline {
+    margin-top: 1rem;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--lf-text-primary);
   }
-  .problem-text p {
-    color: var(--lf-text-secondary);
-    margin-bottom: 1.25rem;
+  .what-it-is-sub {
+    margin-top: 1.5rem;
     font-size: 1.0625rem;
-    line-height: 1.75;
+    line-height: 1.7;
+    max-width: 720px;
   }
 
-  /* Session grid — THE SIGNATURE MOVE */
-  .session-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0.75rem;
+  .section-intro {
+    max-width: 720px;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    font-size: 1rem;
+    line-height: 1.7;
   }
-  .session-window {
+
+  /* Capability grid — the new "What's in the Box" */
+  .capability-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  .cap-card {
     background: var(--lf-surface);
     border: 1px solid var(--lf-border);
-    border-radius: 8px;
-    padding: 0.875rem;
-    min-height: 72px;
+    border-radius: 14px;
+    padding: 1.75rem 1.875rem;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    opacity: 0;
-    transform: scale(0.8) translateY(12px);
-    transition: opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-                transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-                border-color 0.2s, box-shadow 0.2s;
   }
-  .session-visible {
-    opacity: 1 !important;
-    transform: scale(1) translateY(0) !important;
-  }
-  .session-window:hover {
+  .cap-card:hover {
     border-color: var(--lf-border-bright);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
   }
-  .session-badge {
+  .cap-hero {
+    border-color: rgba(0, 255, 65, 0.18);
+    background: linear-gradient(180deg, var(--lf-surface) 0%, rgba(0, 255, 65, 0.025) 100%);
+  }
+  .cap-hero:hover {
+    border-color: var(--lf-phosphor);
+    box-shadow: 0 8px 32px rgba(0, 255, 65, 0.12);
+  }
+  .cap-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    margin-bottom: 0.875rem;
+  }
+  .cap-card h3 {
+    font-size: 1.375rem;
+    line-height: 1.25;
+    color: var(--lf-text-primary);
+  }
+  .cap-tag {
+    display: inline-block;
+    width: fit-content;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.625rem;
+    letter-spacing: 0.12em;
+    padding: 0.25rem 0.625rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .tag-moat {
+    background: rgba(0, 255, 65, 0.1);
     color: var(--lf-phosphor);
-    background: rgba(0, 255, 65, 0.06);
-    padding: 0.125rem 0.5rem;
-    border-radius: 999px;
-    width: fit-content;
-    border: 1px solid rgba(0, 255, 65, 0.12);
+    border: 1px solid rgba(0, 255, 65, 0.25);
   }
-  .session-site {
+  .tag-identity {
+    background: rgba(6, 182, 212, 0.1);
+    color: var(--lf-info);
+    border: 1px solid rgba(6, 182, 212, 0.25);
+  }
+  .tag-tokens {
+    background: rgba(255, 179, 0, 0.1);
+    color: var(--lf-warning);
+    border: 1px solid rgba(255, 179, 0, 0.25);
+  }
+  .tag-network {
+    background: rgba(0, 255, 65, 0.1);
+    color: var(--lf-phosphor);
+    border: 1px solid rgba(0, 255, 65, 0.25);
+  }
+  .tag-learn {
+    background: rgba(6, 182, 212, 0.1);
+    color: var(--lf-info);
+    border: 1px solid rgba(6, 182, 212, 0.25);
+  }
+  .cap-desc {
+    color: var(--lf-text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+  }
+  .cap-desc code {
+    background: var(--lf-deep);
+    padding: 0.125rem 0.375rem;
+    border-radius: 4px;
+    font-size: 0.8125rem;
+    color: var(--lf-phosphor);
+  }
+  .tool-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--lf-border);
+    padding-top: 1rem;
+  }
+  .tool-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.625rem 0;
+    border-bottom: 1px solid rgba(53, 59, 77, 0.4);
+    font-size: 0.8125rem;
+  }
+  .tool-list li:last-child { border-bottom: none; }
+  .tool-list li code {
+    color: var(--lf-phosphor);
     font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 0.8125rem;
+  }
+  .tool-list li span {
+    color: var(--lf-text-muted);
+    font-size: 0.78125rem;
+    line-height: 1.55;
+  }
+  .tool-list li span code {
+    background: var(--lf-deep);
+    padding: 0.0625rem 0.3125rem;
+    border-radius: 3px;
     font-size: 0.6875rem;
-    color: var(--lf-text-muted);
-    margin-top: 0.375rem;
   }
-  .session-dim { --dim: 0.55; }
-  .session-dim.session-visible { opacity: var(--dim) !important; }
-  .pool-status {
+
+  /* Self-Improvement section */
+  .self-improve-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: 3rem;
+    align-items: start;
+    margin-top: 1rem;
+  }
+  .dossier {
+    position: sticky;
+    top: 6rem;
+  }
+  .mechanisms {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .mechanism {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--lf-border);
+  }
+  .mechanism:last-child { border-bottom: none; }
+  .mechanism-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.0625rem;
+    color: var(--lf-text-primary);
+    margin-bottom: 0.375rem;
+  }
+  .mechanism-desc {
+    color: var(--lf-text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+  .mechanism-desc code {
+    background: var(--lf-deep);
+    padding: 0.125rem 0.375rem;
+    border-radius: 4px;
+    font-size: 0.8125rem;
+    color: var(--lf-phosphor);
+  }
+  .self-improve-cta {
     text-align: center;
-    margin-top: 1.5rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--lf-text-muted);
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--lf-border);
+  }
+  .self-improve-cta code {
+    background: var(--lf-deep);
+    padding: 0.125rem 0.4375rem;
+    border-radius: 4px;
+    font-size: 0.8125rem;
+    color: var(--lf-phosphor);
   }
 
   /* Table */
@@ -676,15 +924,21 @@ import '../styles/global.css';
 
   .hide-mobile { display: inline; }
 
+  @media (max-width: 900px) {
+    .capability-grid { grid-template-columns: 1fr; }
+    .self-improve-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .dossier { position: static; }
+  }
+
   @media (max-width: 768px) {
     .hero { padding: 8rem 0 4rem; }
-    .problem-grid { grid-template-columns: 1fr; }
-    .session-grid { grid-template-columns: repeat(3, 1fr); }
     .hide-mobile { display: none; }
     .nav-links .nav-link { display: none; }
     .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
     .reel-card { width: 200px; height: 113px; }
     .video-reel { margin-top: 2rem; }
+    .cap-card { padding: 1.5rem; }
+    .what-it-is-headline { font-size: 1.5rem; }
   }
 </style>
 
