@@ -27,7 +27,7 @@ import '../styles/global.css';
       <span class="nav-wordmark">LEAPFROG</span>
     </a>
     <div class="nav-links">
-      <a href="https://github.com/anthropics/leapfrog" class="nav-link" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/anthonybono21-cloud/leapfrog" class="nav-link" target="_blank" rel="noopener">GitHub</a>
       <a href="https://npmjs.com/package/leapfrog" class="nav-link" target="_blank" rel="noopener">npm</a>
       <a href="#get-started" class="btn-primary btn-sm">Get Started</a>
     </div>
@@ -50,7 +50,7 @@ import '../styles/global.css';
     </p>
     <div class="hero-cta fade-in" style="--delay: 0.7s">
       <a href="#get-started" class="btn-primary">Get Started</a>
-      <a href="https://github.com/anthropics/leapfrog" class="btn-outline" target="_blank" rel="noopener">View on GitHub</a>
+      <a href="https://github.com/anthonybono21-cloud/leapfrog" class="btn-outline" target="_blank" rel="noopener">View on GitHub</a>
     </div>
 
     <!-- Animated terminal -->
@@ -70,7 +70,7 @@ import '../styles/global.css';
           <span class="phosphor">&nbsp; @..@</span>&nbsp;&nbsp;&nbsp; Leapfrog <span class="text-muted">v0.6.1</span>
         </div>
         <div class="typed-line" style="--line-delay: 2.5s">
-          <span class="phosphor">&nbsp;(----)</span>&nbsp;&nbsp; 34 tools <span class="text-muted">|</span> 15 max sessions <span class="text-muted">|</span> self-improving
+          <span class="phosphor">&nbsp;(----)</span>&nbsp;&nbsp; 36 tools <span class="text-muted">|</span> 15 max sessions <span class="text-muted">|</span> self-improving
         </div>
         <div class="typed-line" style="--line-delay: 2.8s">
           <span class="phosphor">( >__< )</span>&nbsp; watching.
@@ -91,9 +91,9 @@ import '../styles/global.css';
   <div class="container">
     <div class="stats-row">
       <div class="stat" data-count="15"><div class="stat-number">0</div><div class="stat-label">parallel sessions</div></div>
-      <div class="stat" data-count="34"><div class="stat-number">0</div><div class="stat-label">tools</div></div>
+      <div class="stat" data-count="36"><div class="stat-number">0</div><div class="stat-label">tools</div></div>
       <div class="stat" data-count="951"><div class="stat-number">0</div><div class="stat-label">tests</div></div>
-      <div class="stat" data-count="10"><div class="stat-number">0</div><div class="stat-label" style="font-size: 0.7rem">x fewer tokens</div></div>
+      <div class="stat" data-count="5"><div class="stat-number">0</div><div class="stat-label" style="font-size: 0.7rem">x fewer tokens</div></div>
       <div class="stat" data-count="0"><div class="stat-number">0</div><div class="stat-label">cloud deps</div></div>
     </div>
   </div>
@@ -168,7 +168,7 @@ import '../styles/global.css';
 <section class="section scroll-reveal" id="features" style="padding-top: 148px;">
   <div class="container">
     <p class="overline">What's in the box</p>
-    <h2>31 tools. Zero filler.</h2>
+    <h2>36 tools. Zero filler.</h2>
     <div class="feature-grid">
       <div class="feature-card">
         <h3>Run 15 browsers at once. Zero tug-of-war between agents.</h3>
@@ -288,7 +288,7 @@ import '../styles/global.css';
       <span class="text-muted" style="margin-left: 0.75rem;">Every agent needs a scout.</span>
     </div>
     <div class="footer-links">
-      <a href="https://github.com/anthropics/leapfrog" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/anthonybono21-cloud/leapfrog" target="_blank" rel="noopener">GitHub</a>
       <a href="https://npmjs.com/package/leapfrog" target="_blank" rel="noopener">npm</a>
       <a href="https://x.com/Leapfrog_MCP" target="_blank" rel="noopener">@Leapfrog_MCP</a>
     </div>
@@ -323,7 +323,7 @@ import '../styles/global.css';
         stats.forEach(stat => {
           const target = parseInt(stat.dataset.count);
           const numEl = stat.querySelector('.stat-number');
-          const suffix = target === 10 ? 'x' : '';
+          const suffix = target === 5 ? 'x' : '';
           let current = 0;
           const duration = 1200;
           const step = target / (duration / 16);
@@ -380,7 +380,7 @@ import '../styles/global.css';
       const target = parseInt(stat.dataset.count);
       const numEl = stat.querySelector('.stat-number');
       if (numEl && numEl.textContent === '0' && target > 0) {
-        const suffix = target === 10 ? 'x' : '';
+        const suffix = target === 5 ? 'x' : '';
         numEl.textContent = target + suffix;
       }
     });
